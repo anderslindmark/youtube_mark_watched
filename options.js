@@ -49,15 +49,17 @@ function loadOptions(options) {
 }
 
 function saveOptions() {
+	// Get options from input values
 	options = {
 		"opacity": optOpacity,
 		"localstorage": optLocalStorage
 	}
-	// Get options from input values
+
 	// Save options
 	chrome.storage.local.set({"ythelper_options": options}, function(data) {
-		// TODO: Show div with "blabla saved"
-		alert("Options saved");
+		$("#saveoptions").button("disable");
+		$("#messagebox").show();
+		$("#messagebox").fadeOut(3000);
 	});
 }
 

@@ -12,6 +12,20 @@ body {
 	padding: 0px 25px 25px 25px;
 }
 
+#messagebox {
+	background: #DEFDC4;
+	position: absolute;
+	margin:-150px 0 0 -150px;
+	bottom: 50px;
+	left: 50%;
+	padding: 20px;
+	width: 300px;
+	text-align: center;
+	border: 1px solid black;
+	box-shadow: 2px 2px 30px #c0c0c0;
+	display: none;
+}
+
 .optionlabel {
 	width: auto;
 	font-size: 12pt;
