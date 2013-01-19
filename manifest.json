@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "Youtube helper",
+  "description": "This extension helps you keep track of what you've watched on YouTube by visually marking watched clips.",
+  "version": "0.1",
+
+  "permissions": [
+    "tabs",
+    "storage",
+    "http://*.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://www.youtube.com/user/*/videos"],
+      "js": ["jquery.min.js", "ythelper_userpage.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["http://www.youtube.com/watch?v=*"],
+      "js": ["ythelper_watching.js"]
+    }
+  ]
+}
