@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>Youtube - Mark Watched: Options</title>
+	<link rel="stylesheet" href="jquery-ui-1.10.0.custom.min.css" />
+	<link rel="stylesheet" href="options.css" />
+</head>
+
+<body>
+<div id="wrap">
+	<h1>Youtube - Mark watched</h1>
+	<div class="optionlabel">Thumbnail opacity level </div>
+	<div class="optiondesc">An opacity level of <b>1</b> means that the thumbnail looks unmodified, a level of <b>0</b> makes the thumbnail invisible</div>
+	<div id="opacityslider" class="optionitem"></div>
+	<div id="opacityvalue"></div>
+	
+	<div id="clear"></div>
+	
+	<div class="optionlabel">Store history locally or use chrome sync</div>
+	<div class="optiondesc">Using <b>sync</b> to store the settings means that you will get the same settings on another computer</div>
+	<div id="radiostorage" class="optionitem">
+		<input type="radio" id="radiolocal" name="radiostorage" /> <label for="radiolocal">Local</label>
+		<input type="radio" id="radiosync" name="radiostorage"/> <label for="radiosync">Sync</label>
+	</div>
+
+	<div id="clear"></div>
+	<div id="saveoptions">Save</div>
+	<div id="clear"></div>
+</div>
+</body>
+
+<script src="jquery.min.js"></script>
+<script src="jquery-ui-1.10.0.custom.min.js"></script>
+<script src="options.js"></script>
+
+
+</html>

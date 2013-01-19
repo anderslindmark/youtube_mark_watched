@@ -1,36 +1,43 @@
-/*
-This is ythelper_userpage.js
-*/
-var storage = chrome.storage.local; /* TODO: Set to .sync instead */
-storage.get("watched_id", function(data) {
-	ids = data.watched_id;
-	if (!ids) { return; }
+defaultoptions = {
+	'opacity': 0.3,
+	'localstorage': true
+};
 
-	$("span.context-data-item").each( function() {
-		// get video id and set parent item style.
-		var id = $(this).attr("data-context-item-id");
-		if (id && ids[id]) {
-			$(this).parent().attr("style", "opacity: 0.3;");
-		}
+chrome.storage.local.get("ythelper_options", function (data)
+{
+	// Get settings
+	var localstorage = null;
+	var opacity = null;
+	if (!data.ythelper_options) {
+		// Options have not been changed yet
+		opacity = defaultoptions.opacity;
+		localstorage = defaultoptions.localstorage;
+	}
+	else {
+		opacity = data.ythelper_options.opacity;
+		localstorage = data.ythelper_options.localstorage;
+	}
+
+	var storage = null;
+	if (localstorage) {
+		storage = chrome.storage.local;
+	}
+	else {
+		storage = chrome.storage.sync;
+	}
+
+	// Load history
+	storage.get("watched_id", function(data) {
+		ids = data.watched_id;
+		if (!ids) { return; }
+
+		// Check every video box and see if it is in the history
+		$("span.context-data-item").each( function() {
+			// get video id and set parent item style.
+			var id = $(this).attr("data-context-item-id");
+			if (id && ids[id]) {
+				$(this).parent().css("opacity", opacity);
+			}
+		});
 	});
 });
-
-/*
-To do the actual visual change
-==============================
- <li class="channels-content-item"> 
- 	^- these need to have the attribute id="content-item-watched" added
- css needs:
- #content-item-watched {
- 	opacity: 0.5;	
- }
-
-To save/load which items have been played
-=========================================
-Loading
--------
-The span immediately under .channels-content-item is .context-data-item and
-this span has an attribute:
-	data-context-item-id="qY8slnOKFtE"
-which can be read.
-*/

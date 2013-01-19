@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Youtube helper",
+  "name": "Youtube mark watched",
   "description": "This extension helps you keep track of what you've watched on YouTube by visually marking watched clips.",
   "version": "0.1",
 
@@ -20,5 +20,6 @@
       "matches": ["http://www.youtube.com/watch?v=*"],
       "js": ["ythelper_watching.js"]
     }
-  ]
+  ],
+  "options_page": "options.html"
 }
