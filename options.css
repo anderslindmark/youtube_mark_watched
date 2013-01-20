@@ -39,8 +39,18 @@ body {
 	margin-top: 10px;
 }
 
+.optiondesc_inline {
+	display: inline-block;
+	margin-top: 20px;
+}
+
 .optionitem {
 	margin-top: 15px;
+}
+
+.clearbutton {
+	display: inline-block;
+	margin-left: 15px;
 }
 
 #opacityslider {
@@ -65,4 +75,8 @@ body {
 #clear {
 	clear: both;
 	margin-top: 50px;
+}
+
+#justclear {
+	clear: both;
 }

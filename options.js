@@ -58,11 +58,54 @@ function saveOptions() {
 	// Save options
 	chrome.storage.local.set({"ythelper_options": options}, function(data) {
 		$("#saveoptions").button("disable");
-		$("#messagebox").show();
-		$("#messagebox").fadeOut(3000);
+		showMessage("Your changes have been saved!");
 	});
 }
 
+function showMessage(msg) {
+	$("#messagebox").html(msg);
+	$("#messagebox").show();
+	$("#messagebox").fadeOut(3000);
+}
+
+function deleteHistory(localstorage) {
+	var storage = null;
+	if (localstorage) {
+		storage = chrome.storage.local;
+	}
+	else {
+		storage = chrome.storage.sync;
+	}
+
+	storage.remove("watched_id", function() {
+		var msg = ( localstorage ? "Local" : "Sync" ) + " history has been cleared.";
+		showMessage(msg);
+		loadHistoryInfo(localstorage);
+	})
+}
+
+function loadHistoryInfo(localstorage) {
+	var storage = null;
+	var infoid = null;
+	if (localstorage) {
+		storage = chrome.storage.local;
+		infoid = "#historyinfo_local";
+	}
+	else {
+		storage = chrome.storage.sync;
+		infoid = "#historyinfo_sync";
+	}
+
+	storage.get("watched_id", function(data) {
+		var idcount = 0;
+		if (data.watched_id) {
+			idcount = Object.keys(data.watched_id).length;
+		}
+		var msg = "Videos in " + ( localstorage ? "local" : "sync" ) + " storage: <b>" + idcount + "</b>";
+		$(infoid).html(msg);
+	});
+
+}
 
 $("document").ready( function() {
 	$("#opacityslider").slider({
@@ -98,6 +141,34 @@ $("document").ready( function() {
 		"disabled": true
 	}).click(function(){
 		saveOptions();
+	});
+
+	/*
+	chrome.storage.local.get("watched_id", function(data) {
+		var idcount = 0;
+		if (data.watched_id) {
+			idcount = Object.keys(data.watched_id).length;
+		}
+		$("#historyinfo_local").html("Videos in local storage: <b>" + idcount + "</b>");
+	});
+
+	chrome.storage.sync.get("watched_id", function(data) {
+		var idcount = 0;
+		if (data.watched_id) {
+			idcount = Object.keys(data.watched_id).length;
+		}
+		$("#historyinfo_sync").html("Videos in sync-storage: <b>" + idcount + "</b>");
+	});
+	*/
+
+	loadHistoryInfo(true); // Load local history
+	loadHistoryInfo(false); // Load sync history
+
+	$("#clearlocal").button().click(function() {
+		deleteHistory(true);
+	});
+	$("#clearsync").button().click(function() {
+		deleteHistory(false);
 	});
 });
 

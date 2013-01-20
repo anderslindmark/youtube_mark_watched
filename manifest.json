@@ -4,7 +4,11 @@
   "name": "Youtube mark watched",
   "description": "This extension helps you keep track of what you've watched on YouTube by visually marking watched clips.",
   "version": "0.1",
-
+  "icons": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    },
   "permissions": [
     "tabs",
     "storage",
@@ -21,5 +25,6 @@
       "js": ["ythelper_watching.js"]
     }
   ],
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "homepage_url": "https://github.com/anderslindmark/youtube_mark_watched"
 }
