@@ -1,6 +1,7 @@
 defaultoptions = {
 	'opacity': 0.3,
-	'localstorage': true
+	'localstorage': true,
+	'effect_enabled': true
 };
 
 // Options are always stored locally. History can be stored with sync
@@ -21,12 +22,8 @@ chrome.storage.local.get("ythelper_options", function(data) {
 	}
 });
 
-var startingOptions = null;
-var optOpacity = null;
-var optLocalStorage = null;
 
 function loadOptions(options) {
-	startingOptions = options;
 	// Opacity
 	$("#opacityslider").slider({"value": options.opacity});
 	$("#opacityvalue").html(options.opacity);
@@ -42,20 +39,43 @@ function loadOptions(options) {
 		$("#radiolocal").attr("checked", false);
 		$("#radiosync").attr("checked", true);
 	}
+
+	// Effect
+	if (options.effect_enabled) {
+		$("#effect_enabled").attr("checked", true);
+	}
+	else {
+		$("#effect_enabled").attr("checked", false);
+	}
+
 	$("#radiolocal").button("refresh");
 	$("#radiosync").button("refresh");
+	$("#effect_enabled").button("refresh");
 
 	$("#saveoptions").button("disable");
 }
 
+
 function saveOptions() {
 	// Get options from input values
+	var localstorage = null;
+	switch ($('input[name=radiostorage]:checked').attr("id")) {
+		case 'radiosync':
+			localstorage = false;
+			break;
+		case 'radiolocal':
+			localstorage = true;
+			break;
+	}
+
 	options = {
-		"opacity": optOpacity,
-		"localstorage": optLocalStorage
+		"opacity": $("#opacityslider").slider("option", "value"),
+		"localstorage": localstorage,
+		"effect_enabled": $("#effect_enabled").is(":checked")
 	}
 
 	// Save options
+
 	chrome.storage.local.set({"ythelper_options": options}, function(data) {
 		$("#saveoptions").button("disable");
 		showMessage("Your changes have been saved!");
@@ -114,26 +134,16 @@ $("document").ready( function() {
 		"max": 1,
 		"change": function(event, ui) {
 			$("#opacityvalue").html(ui.value);
-			optOpacity = ui.value;
 			$("#saveoptions").button("enable");
 		},
 	});
 
 	$("#radiostorage").buttonset();
 	$("#radiostorage").change( function() {
-		var method = $('input[name=radiostorage]:checked').attr("id"); // either "radiolocal" or radiosync
+		$("#saveoptions").button("enable");
+	});
 
-		switch (method) {
-			case 'radiosync':
-				console.log("localstorage -> false");
-				optLocalStorage = false;
-				break;
-			case 'radiolocal':
-				console.log("localstorage -> true");
-				optLocalStorage = true;
-				break;
-		}
-
+	$("#effect_enabled").button().click( function() {
 		$("#saveoptions").button("enable");
 	});
 
@@ -142,24 +152,6 @@ $("document").ready( function() {
 	}).click(function(){
 		saveOptions();
 	});
-
-	/*
-	chrome.storage.local.get("watched_id", function(data) {
-		var idcount = 0;
-		if (data.watched_id) {
-			idcount = Object.keys(data.watched_id).length;
-		}
-		$("#historyinfo_local").html("Videos in local storage: <b>" + idcount + "</b>");
-	});
-
-	chrome.storage.sync.get("watched_id", function(data) {
-		var idcount = 0;
-		if (data.watched_id) {
-			idcount = Object.keys(data.watched_id).length;
-		}
-		$("#historyinfo_sync").html("Videos in sync-storage: <b>" + idcount + "</b>");
-	});
-	*/
 
 	loadHistoryInfo(true); // Load local history
 	loadHistoryInfo(false); // Load sync history
