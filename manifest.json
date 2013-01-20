@@ -28,6 +28,7 @@
   "content_scripts": [
     {
       "matches": ["http://www.youtube.com/user/*/videos"],
+      "css": ["userpage.css"],
       "js": ["jquery.min.js", "ythelper_userpage.js"],
       "run_at": "document_end"
     },
