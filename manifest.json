@@ -27,8 +27,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://www.youtube.com/user/*/videos"],
-      "css": ["userpage.css"],
+      "matches": ["http://www.youtube.com/user/*/videos?*"],
       "js": ["jquery.min.js", "ythelper_userpage.js"],
       "run_at": "document_end"
     },
@@ -37,6 +36,7 @@
       "js": ["ythelper_watching.js"]
     }
   ],
+  "web_accessible_resources": ["userpage.css"],
   "options_page": "options.html",
   "homepage_url": "https://github.com/anderslindmark/youtube_mark_watched"
 }

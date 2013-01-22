@@ -4,6 +4,13 @@ defaultoptions = {
 	'effect_enabled': true
 };
 
+// Load stylesheet
+var style = document.createElement('link');
+style.rel = 'stylesheet';
+style.type = 'text/css';
+style.href = chrome.extension.getURL('userpage.css');
+document.head.appendChild(style);
+
 /*
 TODO:
 	- Deal with "Load more" (http://www.youtube.com/channel_ajax?action_load_more_videos)
@@ -40,24 +47,36 @@ chrome.storage.local.get("ythelper_options", function (data)
 				// get video id and set parent item style.
 				var video_id = $(this).attr("data-context-item-id");
 				if (video_id && ids[video_id]) {
-					//$(this).parent().css("opacity", options.opacity);
-					$(this).css("opacity", options.opacity);
-					$(this).find(".content-item-detail").css("opacity", options.opacity);
+					setOpacity($(this), options.opacity );
 					var offset = $(this).parent().offset();
-					var info = $(this).parent().prepend('<div class="thumbnail_overlay" id="' + video_id + '"">' + 
-						'<a href="#" class"thumbnail_overlay" id="' + video_id + '">Unwatch</a>' +
-						'</div>');
-					info.css("top", offset.top);
-					info.css("left", offset.left);
-					info.click( function(event) {
-						event.preventDefault();
-						unwatch(storage, ids, video_id);
-					});
+
+					$(this).parent().prepend('<span class="thumbnail_overlay" id="' + video_id + '">' + 
+						'Unwatch' +
+						'</span>');
 				}
 			});
+
+			$(".thumbnail_overlay").click( function() {
+				var video_id = $(this).attr("id");
+				unwatch(storage, ids, video_id);
+				// Unset transparency
+				setOpacity($(this), 1);
+				// Remove "button"
+				$(this).remove();
+			});
+
 		});
 	}
 });
+
+function setOpacity(element, opacity) {
+	// Called with any child item as element
+	var base = element.parent();
+	var context_data_item = base.find(".context-data-item");
+	var content_item_detail = base.find(".content-item-detail");
+	context_data_item.css("opacity", opacity);
+	content_item_detail.css("opacity", opacity);
+}
 
 function unwatch(storage, ids, video_id) {
 	delete ids[video_id];

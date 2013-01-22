@@ -2,6 +2,19 @@
 	position: absolute;
 	height: 20px;
 	z-index: 1;
-	padding-top: 3px;
-	padding-left: 3px;
+	padding: 2px;
+	padding-bottom: 0px;
+	margin-left: 3px;
+	margin-top: 3px;
+	opacity: 0.25;
+	border: 1px solid transparent;
+}
+
+.thumbnail_overlay:hover {
+	border: 1px outset;
+	opacity: 1;
+}
+
+.thumbnail_overlay:active {
+	border: 1px inset;
 }
