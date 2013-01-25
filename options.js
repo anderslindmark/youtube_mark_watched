@@ -162,6 +162,17 @@ $("document").ready( function() {
 	$("#clearsync").button().click(function() {
 		deleteHistory(false);
 	});
+
+	$("#showhistlocal").button().click(function() {
+		window.location = chrome.extension.getURL("history.html?storageArea=local");
+	});
+
+	$("#showhistsync").button().click(function() {
+		window.location = chrome.extension.getURL("history.html?storageArea=sync");
+	});
+	
+
+	$("a#historyinfo_showhistory_link").attr("href", chrome.extension.getURL("history.html"));
 });
 
 

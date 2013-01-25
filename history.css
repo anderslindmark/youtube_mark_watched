@@ -1,0 +1,88 @@
+body {
+	background: #FFFFFB;
+}
+
+#wrap {
+	background: white;
+	margin: 50px auto;
+	width: 700px;
+	border: 1px solid #c0c0c0;
+	border-radius: 10px;
+	box-shadow: 2px 2px 20px #c0c0c0;
+	padding: 0px 25px 25px 25px;
+}
+
+#messagebox {
+	background: #DEFDC4;
+	position: absolute;
+	margin:-150px 0 0 -150px;
+	bottom: 50px;
+	left: 50%;
+	padding: 20px;
+	width: 300px;
+	text-align: center;
+	border: 1px solid black;
+	box-shadow: 2px 2px 30px #c0c0c0;
+	display: none;
+}
+
+.optionlabel {
+	width: auto;
+	font-size: 14pt;
+	font-weight: bold;
+	border-bottom: 1px dotted gray;
+}
+
+.optionsublabel {
+	width: auto;
+	margin-top: 15px;
+	font-size: 12pt;
+	font-weight: bold;
+	border-bottom: 1px dotted lightgray;
+}
+
+.optiondesc {
+	margin-top: 10px;
+}
+
+.optiondesc_inline {
+	display: inline-block;
+	margin-top: 20px;
+}
+
+.optionitem {
+	margin-top: 15px;
+}
+
+.clearbutton {
+	display: inline-block;
+	margin-left: 15px;
+}
+
+#opacityslider {
+	display: inline-block;
+	width: 200px;
+	margin-right: 10px;
+}
+
+#opacityvalue {
+	display: inline-block;
+}
+
+#radiostorage {
+	display: inline-block;
+}
+
+#saveoptions {
+	float: right;
+	margin-right: 25px;
+}
+
+#clear {
+	clear: both;
+	margin-top: 20px;
+}
+
+#justclear {
+	clear: both;
+}

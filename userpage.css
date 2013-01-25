@@ -2,17 +2,20 @@
 	position: absolute;
 	height: 20px;
 	z-index: 1;
-	padding: 2px;
-	padding-bottom: 0px;
+	padding: 3px;
+	height: 12px;
 	margin-left: 3px;
 	margin-top: 3px;
 	opacity: 0.25;
 	border: 1px solid transparent;
+	font-size: 8pt;
+	font-weight: bold;
 }
 
 .thumbnail_overlay:hover {
 	border: 1px outset;
-	opacity: 1;
+	opacity: 0.8;
+	background: white;
 }
 
 .thumbnail_overlay:active {

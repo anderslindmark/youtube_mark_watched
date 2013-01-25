@@ -14,7 +14,10 @@ document.head.appendChild(style);
 /*
 TODO:
 	- Deal with "Load more" (http://www.youtube.com/channel_ajax?action_load_more_videos)
-	- Move common stuff to a separate javascript-file and add that to the content_script chain
+	- Move common CSS-stuff to one css-file and only keep page specific stuff in the page ones
+	- Move common JS-stuff to one js-file and either <script> it or add it to the content_script chain 
+	- Instead of saving "watched_id" and "titles" etcetera, save a "video_info" (or something) where 
+	  the key is the id and all other fields of interest are properties.
 */
 
 chrome.storage.local.get("ythelper_options", function (data)

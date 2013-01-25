@@ -28,11 +28,19 @@ body {
 
 .optionlabel {
 	width: auto;
-	font-size: 12pt;
+	font-size: 14pt;
 	font-weight: bold;
 	
 	
 	border-bottom: 1px dotted gray;
+}
+
+.optionsublabel {
+	width: auto;
+	margin-top: 15px;
+	font-size: 12pt;
+	font-weight: bold;
+	border-bottom: 1px dotted lightgray;
 }
 
 .optiondesc {

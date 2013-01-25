@@ -27,13 +27,14 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://www.youtube.com/user/*/videos?*"],
+      "matches": ["http://www.youtube.com/user/*/videos*"],
       "js": ["jquery.min.js", "ythelper_userpage.js"],
       "run_at": "document_end"
     },
     {
       "matches": ["http://www.youtube.com/watch?v=*"],
-      "js": ["ythelper_watching.js"]
+      "js": ["jquery.min.js", "ythelper_watching.js"],
+      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": ["userpage.css"],

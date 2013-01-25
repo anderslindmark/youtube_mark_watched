@@ -8,6 +8,7 @@
 <body>
 <div id="wrap">
 	<h1>Youtube - Mark watched</h1>
+	<h2>Options</h2>
 	<div class="optionlabel">Thumbnail opacity level </div>
 	<div class="optiondesc">An opacity level of <b>1</b> means that the thumbnail looks unmodified, a level of <b>0</b> makes the thumbnail invisible</div>
 	<div id="opacityslider" class="optionitem"></div>
@@ -34,19 +35,21 @@
 
 	<div id="clear"></div>
 	<div class="optionlabel">History information</div>
+	<div class="optionsublabel">Local storage</div>
 	<div class="optiondesc optiondesc_inline" id="historyinfo_local"></div>
-		<div class="clearbutton" id="clearlocal">Delete local history</div>
-	<div id="justclear"></div>
+		<div class="clearbutton" id="clearlocal">Clear</div>
+		<div class="clearbutton" id="showhistlocal">Show</div>
+	
+	<div class="optionsublabel">Sync storage</div>
 	<div class="optiondesc optiondesc_inline" id="historyinfo_sync"></div>
-		<div class="clearbutton" id="clearsync">Delete sync history</div>
+		<div class="clearbutton" id="clearsync">Clear</div>
+		<div class="clearbutton" id="showhistsync">Show</div>
 
 
 
-</div>
+</div> <!-- wrap -->
 
-<div id="messagebox">
-
-</div>
+<div id="messagebox"></div>
 
 </body>
 

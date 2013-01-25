@@ -29,9 +29,18 @@ chrome.storage.local.get("ythelper_options", function (data)
     }
     
     if(!ids[videoId]) {
-      // this video was not in storage
+      // Save video
       ids[videoId] = true;
       storage.set({"watched_id": ids});
+      // Save title
+      storage.get("titles", function(data) {
+        // Get or create titles list
+        titles = (data.titles ? data.titles : {} );
+        // Get title
+        var title = $("meta[name=title]").attr("content");
+        titles[videoId] = title;
+        storage.set({"titles": titles});
+      });
     }
   });
 });
