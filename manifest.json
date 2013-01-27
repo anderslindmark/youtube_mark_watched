@@ -28,12 +28,12 @@
   "content_scripts": [
     {
       "matches": ["http://www.youtube.com/user/*/videos*"],
-      "js": ["jquery.min.js", "ythelper_userpage.js"],
+      "js": ["jquery.min.js", "userpage.js"],
       "run_at": "document_end"
     },
     {
       "matches": ["http://www.youtube.com/watch?v=*"],
-      "js": ["jquery.min.js", "ythelper_watching.js"],
+      "js": ["jquery.min.js", "watching.js"],
       "run_at": "document_end"
     }
   ],
