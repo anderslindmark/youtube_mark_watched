@@ -13,6 +13,8 @@ function getQueryParams(qs) {
     return params;
 }
 
+
+
 $("document").ready( function() {
 	var $_GET = getQueryParams(document.location.search);
 	var storageType = $_GET["storageArea"];
@@ -39,6 +41,7 @@ $("document").ready( function() {
 				return;
 			}
 			$("#historylist").show();
+			$("tr:even").css("background", "#c0c0c0;");
 
 			titles = dataTitles.titles;
 			if (!titles) {
@@ -54,7 +57,10 @@ $("document").ready( function() {
 				row.append($('<td>asd</td>'));
 				*/
 
-				var pId 	= '<p class="video_id">' + video_id  + '</p>';
+				var pId 	= '<p class="video_id">' + 
+					'<a href="http://www.youtube.com/watch?v=' + video_id  + '">' +
+					video_id +
+					'</p>';
 				var pTitle 	= '<p class="video_title">' + titles[video_id] + '</p>';
 				var pOps 	= '<p>Delete</p>';
 
@@ -76,6 +82,8 @@ $("document").ready( function() {
 					*/
     			);
 			}
+
+			$("#historylist tr:odd").css("background-color", "#F6F6F6;");
 		});
 	});
 });
